@@ -15,9 +15,12 @@ const FitCards = async () => {
     const Cards: Root[] = await FitData();
     // console.log(Cards);
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {Cards.map((card:Root) => <PlanCards key={card.id} card={card} />)}
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {Cards.map((card: Root) => <PlanCards key={card.id} card={card} />)}
+            </div>
         </div>
+
     );
 };
 
