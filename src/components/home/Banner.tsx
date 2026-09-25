@@ -1,7 +1,9 @@
 "use client";
 import Image from "next/image";
 import Logo from "@/assets/banner.png"; // ইমেজের পাথ
-import { FaArrowDown } from "react-icons/fa6"; // npm install react-icons
+import { FaArrowDown } from "react-icons/fa6";
+import Link from "next/link";
+
 const Banner = () => {
   const scrollToLibrary = () => {
     const librarySection = document.getElementById("library");
@@ -12,18 +14,18 @@ const Banner = () => {
 
   return (
     <section className="max-w-7xl mx-auto px-6 pt-8 pb-12">
-      {/* Outer Banner Card with Dark Background */}
+      {/* Banner */}
       <div className="bg-[#181a1e] rounded-2xl border border-zinc-800/60 p-8 md:p-12 lg:p-16 flex flex-col-reverse lg:flex-row items-center justify-between gap-8 relative overflow-hidden">
 
-        {/* Left Content */}
+        {/* Left side */}
         <div className="flex-1 space-y-6 z-10">
 
-          {/* Eyebrow Text */}
+          {/* Text */}
           <span className="text-[#ccff00] text-xs font-bold tracking-widest uppercase bg-[#ccff00]/10 px-3 py-1 rounded-full inline-block">
             WORKOUT LIBRARY
           </span>
 
-          {/* Main Heading */}
+          {/* Dead */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight uppercase font-sans">
             <span className="text-white block">
               TRAIN WITH INTENT.
@@ -38,17 +40,20 @@ const Banner = () => {
             FitLog is a dark, no-nonsense gym companion: pick a lift, lock it into today's plan, and watch the week's work add up.
           </p>
 
-          {/* Primary CTA Button */}
-          <button
+          {/* Primary Button */}
+          <Link href="/workout">
+           <button
             onClick={scrollToLibrary}
             className="bg-[#ccff00] hover:bg-[#bce600] text-black font-extrabold text-sm uppercase px-6 py-3.5 rounded-lg flex items-center gap-2 transition-all transform active:scale-95 cursor-pointer"
           >
             <span>BROWSE WORKOUTS</span>
             <FaArrowDown className="text-xs" />
           </button>
+          </Link>
+         
         </div>
 
-        {/* Right Banner Image Container */}
+        {/* Right side Image */}
         <div className="flex-1 w-full flex justify-center lg:justify-end z-10">
           <div className="relative w-full max-w-[400px] h-[280px] sm:h-[350px]">
             <Image

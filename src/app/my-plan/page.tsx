@@ -4,31 +4,46 @@ import { PlanContext } from "@/context/PlanContext";
 import React, { useContext, useState } from "react";
 import { Root } from "@/types/FitTypes";
 import ListedPlan from "@/components/shared/ListedPlan";
+import Link from "next/link";
 
 const ListedCards = () => {
+    // Cheking Plan and Saved
     const [activeTab, setActiveTab] = useState<"plan" | "saved">("plan");
-    const [sortPlan, setSortPlan] = useState<"rating" | "duration" | "calories">("rating");
-    const { plan = [], saved = [], planMinutes, planCalories } = useContext(PlanContext);
+
+    //  Sort Option State
+    const [sortPlan, setSortPlan] = useState<"none" | "rating" | "duration" | "calories">("none");
+
+    // Distruccring data plan and saved 
+    const { plan = [], saved = [] } = useContext(PlanContext);
 
     // Sorting Function
-    const sortList = (list: Root[]) => {
+    const getSortedList = (list: Root[]) => {
+
         const sorted = [...list];
+
         if (sortPlan === "rating") {
-            sorted.sort((a, b) => b.rating - a.rating);
-        } else if (sortPlan === "duration") {
-            sorted.sort((a, b) => b.duration - a.duration);
-        } else if (sortPlan === "calories") {
-            sorted.sort((a, b) => b.caloriesBurned - a.caloriesBurned);
+            return sorted.sort((a, b) => (b.rating || 0) - (a.rating || 0));
         }
-        return sorted;
+        if (sortPlan === "duration") {
+            return sorted.sort((a, b) => (b.duration || 0) - (a.duration || 0));
+        }
+        if (sortPlan === "calories") {
+            return sorted.sort((a, b) => (b.caloriesBurned || 0) - (a.caloriesBurned || 0));
+        }
+        return list;
     };
 
-    const sortedPlanList = sortList(plan);
-    const sortedSavedList = sortList(saved);
-    const currentList = activeTab === "plan" ? sortedPlanList : sortedSavedList;
-     
+    // Short Cheking data
+    const currentPlanList = getSortedList(plan);
+    const currentSavedList = getSortedList(saved);
+
+    const activeData = activeTab === "plan" ? plan : saved;
+
+    const totalMinutes = activeData.reduce((acc, curr) => acc + (curr.duration || 0), 0);
+    const totalCalories = activeData.reduce((acc, curr) => acc + (curr.caloriesBurned || 0), 0);
+
     return (
-        <div className="bg-[#121316] min-h-screen text-white pb-20">
+        <div className="bg-[#121316]  text-white pb-5">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-6">
 
                 {/* Header */}
@@ -42,72 +57,74 @@ const ListedCards = () => {
                 </div>
 
                 {/* Stats Summary */}
-                <div className="grid grid-cols-3 gap-6 py-6 border-y border-zinc-800/80 mb-8">
-                    <div>
+                <div className="grid grid-cols-3 gap-0 py-6 border-y border-zinc-800/80 mb-6 items-center text-center">
+
+                    {/* Left: Exercises */}
+                    <div className="px-6">
                         <p className="text-zinc-400 text-xs font-bold uppercase tracking-wider mb-1">
                             Exercises
                         </p>
                         <h2 className="text-3xl font-black text-[#ccff00]">
-                            {plan.length}
+                            {activeData.length}
                         </h2>
                     </div>
-                    <div>
+
+                    <div className="border-x border-zinc-300/100 px-4">
                         <p className="text-zinc-400 text-xs font-bold uppercase tracking-wider mb-1">
                             Minutes
                         </p>
                         <h2 className="text-3xl font-black text-white">
-                            {planMinutes || 0}
+                            {totalMinutes}
                         </h2>
                     </div>
-                    <div>
+
+                    {/* Right: Calories */}
+                    <div className="px-6">
                         <p className="text-zinc-400 text-xs font-bold uppercase tracking-wider mb-1">
                             Calories
                         </p>
                         <h2 className="text-3xl font-black text-white">
-                            {planCalories || 0}
+                            {totalCalories}
                         </h2>
                     </div>
-                </div>
 
-                {/* Control Bar: Tabs (Left) & Sort By (Right) in exact same row */}
-                <div className="flex items-center justify-between gap-3 mb-6">
-                    
-                    {/* Today's Plan & Saved Buttons */}
-                    <div className="flex items-center gap-2 bg-[#181a1e] p-1 rounded-xl border border-zinc-800/80">
-                        <button
-                            type="button"
-                            onClick={() => setActiveTab("plan")}
-                            className={`text-xs font-bold px-3 sm:px-4 py-2 rounded-lg transition-all ${
-                                activeTab === "plan"
-                                    ? "bg-[#25282e] text-white border border-zinc-700/80"
-                                    : "text-zinc-400 hover:text-white"
-                            }`}
-                        >
-                            Today's Plan
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => setActiveTab("saved")}
-                            className={`text-xs font-bold px-3 sm:px-4 py-2 rounded-lg transition-all ${
-                                activeTab === "saved"
-                                    ? "bg-[#25282e] text-white border border-zinc-700/80"
-                                    : "text-zinc-400 hover:text-white"
-                            }`}
-                        >
-                            Saved
-                        </button>
+                </div>
+                {/* Control Bar */}
+                <div className="flex items-center justify-between gap-3 mb-5">
+
+                    {/* Input Tabs */}
+                    <div className="tabs tabs-boxed bg-[#181a1e] p-1 border border-zinc-800/80 rounded-xl gap-1">
+                        <input
+                            type="radio"
+                            name="my_plan_tabs"
+                            role="tab"
+                            className="tab text-xs font-bold text-zinc-400 checked:!bg-[#25282e] checked:!text-white rounded-lg transition-all h-8 px-3 sm:px-4 cursor-pointer"
+                            aria-label="Today's Plan"
+                            checked={activeTab === "plan"}
+                            onChange={() => setActiveTab("plan")}
+                        />
+                        <input
+                            type="radio"
+                            name="my_plan_tabs"
+                            role="tab"
+                            className="tab text-xs font-bold text-zinc-400 checked:!bg-[#25282e] checked:!text-white rounded-lg transition-all h-8 px-3 sm:px-4 cursor-pointer"
+                            aria-label="Saved"
+                            checked={activeTab === "saved"}
+                            onChange={() => setActiveTab("saved")}
+                        />
                     </div>
 
-                    {/* Sort Dropdown */}
+                    {/* Sort By  */}
                     <div className="flex items-center gap-2 text-xs font-bold text-zinc-400">
                         <span className="whitespace-nowrap">Sort By</span>
                         <select
                             value={sortPlan}
                             onChange={(e) =>
-                                setSortPlan(e.target.value as "rating" | "duration" | "calories")
+                                setSortPlan(e.target.value as "none" | "rating" | "duration" | "calories")
                             }
                             className="bg-[#181a1e] text-white text-xs font-bold border border-zinc-700/80 rounded-lg px-3 py-2 focus:outline-none focus:border-[#ccff00] cursor-pointer"
                         >
+                            <option value="none">Default</option>
                             <option value="rating">Rating</option>
                             <option value="duration">Duration</option>
                             <option value="calories">Calories</option>
@@ -116,16 +133,40 @@ const ListedCards = () => {
 
                 </div>
 
-                {/* List Content Area */}
+                {/* Data Cards */}
                 <div className="space-y-3">
-                    {currentList.length > 0 ? (
-                        currentList.map((card:Root) => (
-                            <ListedPlan key={card.id} cards={card} />
-                        ))
+                    {activeTab === "plan" ? (
+                        currentPlanList.length > 0 ? (
+                            currentPlanList.map((card) => (
+                                <ListedPlan key={card.id} cards={card} active="plan" />
+                            ))
+                        ) : (
+                            <div className="text-center py-10 text-zinc-500 text-sm bg-[#0c0e10] rounded-xl border border-zinc-800/60">
+                                <h2 className="text-3xl text-white">NOTHING HERE YET</h2>
+                                <p className="text-gray-300 mt-1">Browse the library and add a lift to get today moving</p>
+                                <Link href="/">
+                                    <button className="border text-white bg-yellow-400 font-semibold p-1.5 rounded-full hover:bg-yellow-500 mt-1 transition-colors">
+                                        Go to workouts
+                                    </button>
+                                </Link>
+                            </div>
+                        )
                     ) : (
-                        <div className="text-center py-16 text-zinc-500 text-sm bg-[#181a1e] rounded-xl border border-zinc-800/60">
-                            {activeTab === "plan" ? "No workouts added yet." : "No saved workouts yet."}
-                        </div>
+                        currentSavedList.length > 0 ? (
+                            currentSavedList.map((card) => (
+                                <ListedPlan key={card.id} cards={card} active="saved" />
+                            ))
+                        ) : (
+                            <div className="text-center py-10 text-zinc-500 text-sm bg-[#0e0f11] rounded-xl border border-zinc-800/60">
+                                <h2 className="text-3xl text-white">NOTHING HERE YET</h2>
+                                <p className="text-gray-300 mt-1">Browse the library and add a lift to get today moving</p>
+                                <Link href="/">
+                                    <button className="border text-white bg-yellow-400 font-semibold p-1.5 rounded-full hover:bg-yellow-500 mt-1 transition-colors">
+                                        Go to workouts
+                                    </button>
+                                </Link>
+                            </div>
+                        )
                     )}
                 </div>
 

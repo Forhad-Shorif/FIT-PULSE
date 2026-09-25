@@ -13,18 +13,18 @@ const Navbar = () => {
     <nav className="bg-[#121316] text-white border-b border-zinc-800/80 sticky top-0 z-50 px-6 py-3.5">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
 
-        {/* 1. Left Logo */}
+        {/* Left Logo */}
         <Link href="/" className="flex items-center gap-2 group">
           <div className="text-[#ccff00] text-xl transform -rotate-12 group-hover:scale-110 transition-transform">
             <FaDumbbell />
           </div>
-          <span className="font-extrabold tracking-wider text-xl font-mono text-white">
+          <span className="font-extrabold tracking-wider text-[20px] sm:text-[27px] font-mono text-white">
             FITLOG
           </span>
         </Link>
 
-        {/* 2. Middle Navigation Links */}
-        <div className="flex items-center gap-8 text-sm font-semibold">
+        {/* Middle Nav Links */}
+        <div className="flex items-center gap-2 sm:gap-8 text-sm font-semibold">
           <Link
             href="/"
             className={`pb-1 transition-colors relative font-bold ${
@@ -46,29 +46,31 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* 3. Right-side Status Badges */}
+        {/* Right-side */}
         <div className="flex items-center gap-3 text-xs font-bold">
-          {/* Plan Badge - Filled pill */}
+          {/* Total Listed Plan */}
           <Link
             href="/my-plan"
-            className="bg-[#ccff00] text-black px-3.5 py-1.5 rounded-full flex items-center gap-2 hover:bg-[#bce600] transition-colors"
+            className="bg-[#ccff00] text-black px-2 sm:px-3.5 py-1 sm:py-1.5 rounded-full flex items-center gap-2 hover:bg-[#bce600] transition-colors"
           >
-            <span>Plan</span>
-            <span className="bg-black text-[#ccff00] px-1.5 py-0.5 rounded-full text-[11px] font-extrabold min-w-[20px] text-center">
+            <span className="text-[10px] sm:text-[18px]">Plan</span>
+            <span className="bg-black text-[#ccff00] py-0 px-1 sm:px-1.5 sm:py-0.5 rounded-full text-[10px] sm:text-[14px] font-extrabold min-w-[20px] text-center">
               {plan?.length || 0}
             </span>
           </Link>
-
-          {/* Saved Badge - Outline pill */}
+          {/* Total Saved */}
           <Link
-            href="/"
-            className="border border-zinc-700 text-zinc-300 px-3.5 py-1.5 rounded-full flex items-center gap-2 hover:border-[#ccff00] hover:text-white transition-colors"
+            href="/my-plan"
+            className="bg-[#ccff00] text-black px-2 sm:px-3.5 py-1 sm:py-1.5 rounded-full flex items-center gap-2 hover:bg-[#bce600] transition-colors"
           >
-            <span>Saved</span>
-            <span className="bg-zinc-800 text-zinc-200 px-1.5 py-0.5 rounded-full text-[11px] font-extrabold min-w-[20px] text-center">
+            <span className="text-[10px] sm:text-[18px]">Saved</span>
+            <span className="bg-black text-[#ccff00] py-0 px-1 sm:px-1.5 sm:py-0.5 rounded-full text-[10px] sm:text-[14px] font-extrabold min-w-[20px] text-center">
               {saved?.length || 0}
             </span>
           </Link>
+
+          
+        
         </div>
 
       </div>
