@@ -6,7 +6,7 @@ import TodayPlanBtn from '@/components/myplanlist/TodayPlanBtn';
 
 const cardsData = async () => {
     const res = await fetch('https://api.abcz.workers.dev/api/fitlog', {
-        cache: 'no-store'
+        cache: 'no-store' 
     });
     if (!res.ok) {
         throw new Error('Failed to fetch data');
