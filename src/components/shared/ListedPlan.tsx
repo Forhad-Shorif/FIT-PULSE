@@ -22,27 +22,27 @@ const ListedPlan = ({ cards, active }: DataType) => {
       const updatedPlan = plan.filter((elem) => elem.id !== cards.id);
       setPlan(updatedPlan);
 
-    // Toast Notification for Today's Plan
-    toast.error(`${cards.name} removed from Today's Plan!`, {
-      style: {
-        backgroundColor: "#181a1e",
-        color: "#ffffff",
-        border: "1px solid #27272a",
-      },
-    });
+      // Toast Notification for Today's Plan
+      toast.error(`${cards.name} removed from Today's Plan!`, {
+        style: {
+          backgroundColor: "#181a1e",
+          color: "#ffffff",
+          border: "1px solid #27272a",
+        },
+      });
     } else {
 
       const updatedSaved = saved.filter((elem) => elem.id !== cards.id);
       setSaved(updatedSaved);
 
       //  Toast Notification for Saved
-    toast.error(`${cards.name} removed from Saved!`, {
-      style: {
-        backgroundColor: "#181a1e",
-        color: "#ffffff",
-        border: "1px solid #27272a",
-      },
-    });
+      toast.error(`${cards.name} removed from Saved!`, {
+        style: {
+          backgroundColor: "#181a1e",
+          color: "#ffffff",
+          border: "1px solid #27272a",
+        },
+      });
     }
   };
 
@@ -60,8 +60,8 @@ const ListedPlan = ({ cards, active }: DataType) => {
             className="object-cover group-hover:scale-105 transition-transform duration-300"
           />
         </div>
-               
-          {/* Title side */}
+
+        {/* Title side */}
         <div className="min-w-0 flex-1">
           <h3 className="text-xs sm:text-sm font-black text-white uppercase tracking-tight group-hover:text-[#ccff00] transition-colors truncate">
             {cards.name}

@@ -68,9 +68,7 @@ const Navbar = () => {
               {saved?.length || 0}
             </span>
           </Link>
-
-          
-        
+   
         </div>
 
       </div>
