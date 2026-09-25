@@ -1,9 +1,10 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import PlanContext from "@/context/PlanContext";
 import { FaDumbbell } from "react-icons/fa6"; // npm install react-icons
 import { useContext } from "react";
+import { PlanContext } from "@/context/PlanContext";
+
 const Navbar = () => {
   const pathname = usePathname();
   const { plan, saved } = useContext(PlanContext);
@@ -60,7 +61,7 @@ const Navbar = () => {
 
           {/* Saved Badge - Outline pill */}
           <Link
-            href="/my-plan"
+            href="/"
             className="border border-zinc-700 text-zinc-300 px-3.5 py-1.5 rounded-full flex items-center gap-2 hover:border-[#ccff00] hover:text-white transition-colors"
           >
             <span>Saved</span>
