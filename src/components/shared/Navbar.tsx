@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useContext } from 'react';
 import { FaDumbbell } from 'react-icons/fa6';
-import { PlanContext } from '@/context/PlanContext'; // আপনার কন্টেক্সটের পাথ অনুযায়ী অ্যাডজাস্ট করুন
+import { PlanContext } from '@/context/PlanContext'; 
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -122,7 +122,7 @@ const Navbar = () => {
 
           {/* Saved Badge */}
           <Link
-            href="/saved"
+            href="/my-plan"
             className="border border-[#ccff00]/80 text-[#ccff00] hover:bg-[#ccff00]/10 px-3 py-1.5 rounded-full flex items-center gap-2 transition-colors font-extrabold text-xs tracking-wider"
           >
             <span>Saved</span>
