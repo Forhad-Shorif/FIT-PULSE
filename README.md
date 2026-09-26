@@ -5,8 +5,8 @@ FitLog is a dark, no-nonsense gym companion application built with **Next.js (Ap
 ---
 
 ## 2. Project Links
-- **Live Deployment:** []
-- **GitHub Repository:** []
+- **Live Deployment:** [https://fit-pulse-azure.vercel.app/]
+- **GitHub Repository:** [https://github.com/Forhad-Shorif/FIT-PULSE.git]
 
 ---
 
@@ -31,9 +31,9 @@ FitLog is a dark, no-nonsense gym companion application built with **Next.js (Ap
 
 ---
 
-## 4. Getting Started Locally
+## 5. Getting Started Locally
 
 1. **Clone the repository:**
    ```bash
-   git clone <your-github-repository-url>
+   git clone https://github.com/Forhad-Shorif/FIT-PULSE.git
    cd fitlog
