@@ -77,8 +77,8 @@ const Navbar = () => {
             <div className="text-[#ccff00] text-xl transform -rotate-12 group-hover:scale-110 transition-transform">
               <FaDumbbell />
             </div>
-            <span className="font-extrabold tracking-wider text-[20px] sm:text-[24px] font-mono text-white">
-              FIT<span className="text-[#ccff00]">LOG</span>
+            <span className="font-extrabold tracking-wider text-[20px] sm:text-[24px] font-mono text-[#ccff00]">
+              FITLOG
             </span>
           </Link>
         </div>
