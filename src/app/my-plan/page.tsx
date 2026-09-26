@@ -18,6 +18,7 @@ const ListedCards = () => {
 
     // Sorting Function
     const getSortedList = (list: Root[]) => {
+        // console.log(list)
 
         const sorted = [...list];
 

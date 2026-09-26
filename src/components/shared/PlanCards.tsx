@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { LuClock, LuFlame, LuStar } from 'react-icons/lu';
 
 const PlanCards = ({ card }: { card: Root }) => {
+    //  console.log(card)
+
     return (
        <Link href={`/workout/${card.id}`} className="block group cursor-pointer h-full">
     <div className="bg-[#121316] rounded-2xl p-4 border border-zinc-800/60 hover:border-[#ccff00] transition-all duration-300 flex flex-col justify-between h-full">

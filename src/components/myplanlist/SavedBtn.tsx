@@ -11,9 +11,8 @@ interface SavedBtnProps {
 }
 
 const SavedBtn = ({ item }: SavedBtnProps) => {
+//    console.log(item)
     const { saved, setSaved } = useContext(PlanContext);
-
-
 
     // add to 
     const handleSave = () => {

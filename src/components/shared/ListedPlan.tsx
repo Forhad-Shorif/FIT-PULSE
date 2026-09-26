@@ -13,6 +13,8 @@ interface DataType {
 }
 
 const ListedPlan = ({ cards, active }: DataType) => {
+  // console.log(cards)
+  // console.log(active)
   const { plan = [], saved = [], setPlan, setSaved } = useContext(PlanContext);
 
   // HandleRemove

@@ -12,7 +12,7 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-100 shadow-sm border-b border-zinc-800/60 px-2 sm:px-6">
       <div className="navbar-start gap-2 sm:gap-3">
-        
+
         {/* Mobile Hamburger Dropdown (sudhu sm-er niche dekhabe) */}
         <div className="dropdown sm:hidden">
           <div
@@ -35,7 +35,7 @@ const Navbar = () => {
               />
             </svg>
           </div>
-          
+
           {/* Mobile Menu List */}
           <ul
             tabIndex={0}
@@ -44,11 +44,10 @@ const Navbar = () => {
             <li>
               <Link
                 href="/"
-                className={`font-bold transition-colors ${
-                  pathname === "/"
+                className={`font-bold transition-colors ${pathname === "/"
                     ? "text-[#ccff00] bg-zinc-800/50 border-l-2 border-[#ccff00]"
                     : "text-zinc-400 hover:text-white"
-                }`}
+                  }`}
               >
                 Workouts
               </Link>
@@ -56,11 +55,10 @@ const Navbar = () => {
             <li>
               <Link
                 href="/my-plan"
-                className={`font-bold transition-colors ${
-                  pathname === "/my-plan"
+                className={`font-bold transition-colors ${pathname === "/my-plan"
                     ? "text-[#ccff00] bg-zinc-800/50 border-l-2 border-[#ccff00]"
                     : "text-zinc-400 hover:text-white"
-                }`}
+                  }`}
               >
                 My Plan
               </Link>
@@ -86,21 +84,19 @@ const Navbar = () => {
         <ul className="flex items-center gap-6 md:gap-8">
           <Link
             href="/"
-            className={`py-2 transition-all relative font-extrabold text-sm tracking-wide ${
-              pathname === "/"
+            className={`py-2 transition-all relative font-extrabold text-sm tracking-wide ${pathname === "/"
                 ? "text-[#ccff00] border-b-2 border-[#ccff00]"
                 : "text-zinc-400 hover:text-white"
-            }`}
+              }`}
           >
             Workouts
           </Link>
           <Link
             href="/my-plan"
-            className={`py-2 transition-all relative font-extrabold text-sm tracking-wide ${
-              pathname === "/my-plan"
+            className={`py-2 transition-all relative font-extrabold text-sm tracking-wide ${pathname === "/my-plan"
                 ? "text-[#ccff00] border-b-2 border-[#ccff00]"
                 : "text-zinc-400 hover:text-white"
-            }`}
+              }`}
           >
             My Plan
           </Link>
@@ -118,15 +114,17 @@ const Navbar = () => {
             {plan?.length || 0}
           </span>
         </Link>
+        {/* Saved Badge (Outline Style) */}
         <Link
           href="/my-plan"
-          className="bg-[#ccff00] text-black px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full flex items-center gap-1.5 sm:gap-2 hover:bg-[#bce600] transition-colors font-black"
+          className="border-2 border-[#ccff00] text-[#ccff00] px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full flex items-center gap-2 hover:bg-[#ccff00]/10 transition-colors font-black"
         >
           <span className="text-[11px] sm:text-[13px]">Saved</span>
-          <span className="bg-black text-[#ccff00] py-0.5 px-1.5 rounded-full text-[10px] sm:text-[11px] font-extrabold min-w-[18px] text-center">
+          <span className="bg-[#ccff00] text-black px-1.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-extrabold min-w-[18px] text-center">
             {saved?.length || 0}
           </span>
         </Link>
+
       </div>
     </div>
   );

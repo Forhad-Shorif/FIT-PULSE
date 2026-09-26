@@ -11,9 +11,8 @@ interface TodayPlanBtnProps {
 }
 
 const TodayPlanBtn = ({ items }: TodayPlanBtnProps) => {
+    // console.log(items)
     const { plan, setPlan } = useContext(PlanContext);
-
-
 
     const handleAddToPlan = () => {
 

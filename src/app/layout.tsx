@@ -20,6 +20,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "FitLog Workouts",
   description: "Track and manage your workout plan",
+  icons: {icon: "/public/image.png"}
 };
 
 export default function RootLayout({

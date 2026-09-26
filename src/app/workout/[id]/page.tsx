@@ -1,12 +1,15 @@
 import { Root } from '@/types/FitTypes';
 import React from 'react';
+import Logo from '@/assets/App-Error.png'
+import { FaArrowLeft } from 'react-icons/fa6';
 import Image from 'next/image';
+import Link from 'next/link';
 import SavedBtn from '@/components/myplanlist/SavedBtn';
 import TodayPlanBtn from '@/components/myplanlist/TodayPlanBtn';
 
 const cardsData = async () => {
     const res = await fetch('https://api.abcz.workers.dev/api/fitlog', {
-        cache: 'no-store' 
+        cache: 'no-store'
     });
     if (!res.ok) {
         throw new Error('Failed to fetch data');
@@ -21,18 +24,52 @@ interface PageProps {
 }
 
 const Page = async ({ params }: PageProps) => {
+    // console.log(params)
     const { id } = await params;
     const cards = await cardsData();
     const card: Root | undefined = cards.find((gym: Root) => String(gym.id) === id);
 
+    // Data Not found
     if (!card) {
         return (
-            <div className="min-h-screen bg-[#141111] text-white flex items-center justify-center">
-                <h1 className="text-xl font-bold">Card not found</h1>
+            <div className="min-h-[70vh] flex flex-col items-center justify-center text-center px-4 py-10">
+                <div className="bg-[#121316] border border-zinc-800/80 p-8 sm:p-12 rounded-3xl max-w-md w-full shadow-2xl flex flex-col items-center gap-5 relative overflow-hidden">
+
+                    {/* Background Glow */}
+                    <div className="absolute -top-10 -left-10 w-32 h-32 bg-[#ccff00]/10 rounded-full blur-3xl pointer-events-none" />
+
+                    {/* Not Found Image */}
+                    <div className="w-full flex justify-center py-2">
+                        <Image
+                            src={Logo}
+                            alt="Data Not Found"
+                            width={300}
+                            height={200}
+                            priority
+                            className="w-full max-w-[260px] h-auto object-contain"
+                        />
+                    </div>
+
+                    {/* Message */}
+                    <div className="space-y-1">
+                        <h2 className="text-xl font-extrabold text-white uppercase tracking-wide">
+                            Workout Details Not Found
+                        </h2>
+                    </div>
+
+                    {/* Back Button */}
+                    <Link
+                        href="/"
+                        className="mt-2 inline-flex items-center gap-2 bg-[#ccff00] text-black font-extrabold px-6 py-3 rounded-full hover:bg-[#bce600] transition-colors text-xs uppercase tracking-wider"
+                    >
+                        <FaArrowLeft className="w-3.5 h-3.5" />
+                        <span>Back to Workouts</span>
+                    </Link>
+                </div>
             </div>
         );
     }
-
+    //    Data Right
     return (
         <div className="bg-[#040507] min-h-screen text-white py-8 px-4 md:px-8">
 
