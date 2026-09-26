@@ -10,10 +10,10 @@ const Navbar = () => {
   const { plan, saved } = useContext(PlanContext);
 
   return (
-    <div className="navbar bg-base-100 shadow-sm border-b bg-black border-zinc-800/60 px-2 sm:px-6">
+    <div className="navbar bg-base-100 shadow-sm border-b border-zinc-800/60 px-2 sm:px-6">
       <div className="navbar-start gap-2 sm:gap-3">
         
-        {/* 💡 1. Mobile Hamburger Dropdown (শুধুমাত্র sm-এর নিচে দেখাবে, sm:hidden ব্যবহার করা হয়েছে) */}
+        {/* Mobile Hamburger Dropdown (sudhu sm-er niche dekhabe) */}
         <div className="dropdown sm:hidden">
           <div
             tabIndex={0}
@@ -36,7 +36,7 @@ const Navbar = () => {
             </svg>
           </div>
           
-          {/* Mobile Menu Content */}
+          {/* Mobile Menu List */}
           <ul
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-[#121316] border border-zinc-800/80 rounded-2xl z-50 mt-3 w-44 p-3 shadow-2xl space-y-2"
@@ -46,7 +46,7 @@ const Navbar = () => {
                 href="/"
                 className={`font-bold transition-colors ${
                   pathname === "/"
-                    ? "text-[#ccff00] bg-zinc-800/50"
+                    ? "text-[#ccff00] bg-zinc-800/50 border-l-2 border-[#ccff00]"
                     : "text-zinc-400 hover:text-white"
                 }`}
               >
@@ -58,7 +58,7 @@ const Navbar = () => {
                 href="/my-plan"
                 className={`font-bold transition-colors ${
                   pathname === "/my-plan"
-                    ? "text-[#ccff00] bg-zinc-800/50"
+                    ? "text-[#ccff00] bg-zinc-800/50 border-l-2 border-[#ccff00]"
                     : "text-zinc-400 hover:text-white"
                 }`}
               >
@@ -81,14 +81,14 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* 💡 2. Desktop & Tablet Menu (sm, md, lg, xl সব স্ক্রিনে এই মেনু দেখাবে, hidden sm:flex ব্যবহার করা হয়েছে) */}
+      {/* Desktop & Tablet Menu (sm, md, lg, xl sob-khane dekhabe) */}
       <div className="navbar-center hidden sm:flex">
         <ul className="flex items-center gap-6 md:gap-8">
           <Link
             href="/"
-            className={`pb-1 transition-colors relative font-extrabold text-sm tracking-wide ${
+            className={`py-2 transition-all relative font-extrabold text-sm tracking-wide ${
               pathname === "/"
-                ? "text-[#ccff00] after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#ccff00]"
+                ? "text-[#ccff00] border-b-2 border-[#ccff00]"
                 : "text-zinc-400 hover:text-white"
             }`}
           >
@@ -96,9 +96,9 @@ const Navbar = () => {
           </Link>
           <Link
             href="/my-plan"
-            className={`pb-1 transition-colors relative font-extrabold text-sm tracking-wide ${
+            className={`py-2 transition-all relative font-extrabold text-sm tracking-wide ${
               pathname === "/my-plan"
-                ? "text-[#ccff00] after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#ccff00]"
+                ? "text-[#ccff00] border-b-2 border-[#ccff00]"
                 : "text-zinc-400 hover:text-white"
             }`}
           >
